@@ -11,7 +11,7 @@ export default class ProducerFactory {
 
   public async start(): Promise<void> {
     try {
-      await this.producer.connect()
+      await this.producer.connect();
     } catch (error) {
       console.log('Error connecting the producer: ', error)
     }
@@ -29,21 +29,20 @@ export default class ProducerFactory {
       }
     })
     const topicMessages: TopicMessages = {
-      topic: 'purchases-topic',
+      topic: 'topic-first',
       messages: kafkaMessages
     }
 
     const batch: ProducerBatch = {
       topicMessages: [topicMessages]
     }
-
     await this.producer.sendBatch(batch)
   }
 
   private createProducer() : Producer {
     const kafka = new Kafka({
       clientId: 'producer-client',
-      brokers: ['localhost:9092'],
+      brokers: ['kafka:9092'],
     })
     return kafka.producer()
   }

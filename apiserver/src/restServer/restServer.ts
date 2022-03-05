@@ -1,22 +1,22 @@
 import express from 'express';
-import { CustomerManagmentController } from '../controllers/customerManagment.controller';
+import { GetAllPurchasesController } from '../controllers/getAllPurchases.controlle';
 
 
 export class RestServer {
     app = express();
-    httpPort = '3000';
+    httpPort = process.env.PORT;
 
-    customerManagmentController: CustomerManagmentController;
+    getAllPurchasesController: GetAllPurchasesController;
 
     constructor(){
-        this.customerManagmentController = new CustomerManagmentController();
+        this.getAllPurchasesController = new GetAllPurchasesController();
     }
 
     start(){
         
         this.app.use(express.json());
 
-        this.app.use('/', this.customerManagmentController.router);
+        this.app.use('/', this.getAllPurchasesController.router);
         
         this.app.listen(this.httpPort, () => {
         return console.log(`Express is listening at http://localhost:${this.httpPort}`);

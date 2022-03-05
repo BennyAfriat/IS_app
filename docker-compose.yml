@@ -21,6 +21,30 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
       KAFKA_DELETE_TOPIC_ENABLE: 'true'
-      KAFKA_CREATE_TOPICS: "topic-test:1:1"
+      KAFKA_CREATE_TOPICS: "topic-first:1:1"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+  apiserver:
+    image: bennyaf/apiserver
+    ports:
+      -  "3000:3000"
+    environment:
+      HOSTIP: ${HOST_IP}
+    depends_on:
+      - kafka
+      - mongo-container
+  webserver:
+    image: bennyaf/webserver
+    ports:
+      -  "3001:3001"
+    depends_on:
+        - kafka
+        - mongo-container
+  client:
+    image: bennyaf/client
+    ports:
+      -  "4200:80"
+    depends_on:
+        - kafka
+        - mongo-container
+    
