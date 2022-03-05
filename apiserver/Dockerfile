@@ -15,9 +15,4 @@ COPY --chown=node:node . .
 
 RUN tsc
 
-EXPOSE 3000
-EXPOSE 27017
-EXPOSE 9092
-
-
 CMD [ "node", "dist/app.js" ]
