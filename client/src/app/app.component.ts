@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { ProductPurchase } from './model/product.model';
-import { ProductService } from './services/product.service';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,12 +10,32 @@ import { ProductService } from './services/product.service';
 
 export class AppComponent {
   title = 'client';
-  
-  constructor(private productService: ProductService){}
+  buttonText = 'Purchase History';
+  constructor(private router: Router){
 
-  buyNow(price: number){
-    this.productService.executePurchase(price).subscribe(() => {
-      
-    })
   }
+
+  ngOnInit(): void {
+   
+    this.router.events.subscribe(
+      (event: any) => {
+        if (event instanceof NavigationEnd) {
+          this.router.url === '/getAllUserBuys' ? this.buttonText = 'Back' : this.buttonText = 'Purchase History';
+          console.log('this.router.url', this.router.url);
+        }
+      }
+    );
+  };
+
+  navigate(){
+    console.log(this.router.url)
+    if(this.router.url === '/'){
+      this.router.navigate(['/getAllUserBuys']);
+    }
+    else{
+      this.router.navigate(['/']);
+    }
+    
+  }
+  
 }

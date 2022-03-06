@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="table">
+        <div class="table-header">
+            <div class="header__item"><a id="wins" class="filter__link filter__link--number" href="#">UserID</a></div>
+            <div class="header__item"><a id="draws" class="filter__link filter__link--number" href="#">User Name</a></div>
+            <div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">Price</a></div>
+        </div>
+        <div class="table-content">	
+            <div class="table-row" *ngFor="let item of items">	
+                <div class="table-data">{{item.userId}}</div>
+                <div class="table-data">{{item.userName}}</div>
+                <div class="table-data">{{item.price}}</div>
+            </div>
+        </div>	
+    </div>
+</div>

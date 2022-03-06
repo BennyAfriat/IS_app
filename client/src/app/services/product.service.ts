@@ -24,4 +24,8 @@ export class ProductService {
     }
     return this.http.post<ProductPurchase>(environment.webserverUrl + '/buy', productPurchase);
   }
+
+  getPurchaseHistory(){
+    return this.http.get(environment.webserverUrl + '/getAllUserBuys');
+  }
 }

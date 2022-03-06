@@ -9,6 +9,8 @@ const restServer = new RestServer();
 
 
 mongoConnection.connect();
+
 restServer.start();
+
 messageConsumer.startConsumer('topic-first');
 

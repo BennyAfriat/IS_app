@@ -5,10 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductService } from './services/product.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MainComponent } from './components/main/main.component';
+import { PurchaseHistoryComponent } from './components/purchase-history/purchase-history.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MainComponent,
+    PurchaseHistoryComponent
   ],
   imports: [
     BrowserModule,

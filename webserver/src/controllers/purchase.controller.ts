@@ -17,7 +17,7 @@ export class PurchaseController{
 
   }
 
-  async getAllUserBuys(req: express.Request, res: express.Response){
+  async getAllUserBuys(req: express.Request, res: express.Response, next){
     const response =  await axios.get(process.env.GET_ALL_ENDPOINT);
     return res.status(200).send(response.data);
   }
