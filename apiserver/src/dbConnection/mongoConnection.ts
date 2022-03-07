@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 export class MongoConnection{
 
-    dbPath = 'mongodb://mongo-container:27017/apiserver'
+    dbPath = 'mongodb://mongodb:27017/apiserver'
     options = {useNewUrlParser: true, useUnifiedTopology: true};
 
     connect(){

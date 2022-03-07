@@ -1,6 +1,6 @@
 version: '3.1' #format version for this docker compose file
 services:
-  mongo-container:
+  mongodb:
     image: mongo:latest
     environment: {}
     ports:
@@ -32,19 +32,19 @@ services:
       HOSTIP: ${HOST_IP}
     depends_on:
       - kafka
-      - mongo-container
+      - mongodb
   webserver:
     image: bennyaf/webserver
     ports:
       -  "3001:3001"
     depends_on:
         - kafka
-        - mongo-container
+        - mongodb
   client:
     image: bennyaf/client
     ports:
       -  "4200:80"
     depends_on:
         - kafka
-        - mongo-container
+        - mongodb
     
